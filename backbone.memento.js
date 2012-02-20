@@ -6,7 +6,9 @@
 // Documentation and Full License Available at:
 // http://github.com/derickbailey/backbone.memento
 
-Backbone.Memento = (function(Backbone, _){
+;(function(root){
+
+var memento = (function(Backbone, _){
   'use strict';
 
   // ----------------------------
@@ -156,4 +158,22 @@ Backbone.Memento = (function(Backbone, _){
   };
 
   return Memento;
-})(Backbone, _);
+});
+
+
+// Backbone.Memento AMD wrapper with namespace fallback
+if (typeof define === 'function' && define.amd) {
+    // AMD support
+    define([
+      'backbone',    // use Backbone 0.5.3-optamd3 branch (https://github.com/jrburke/backbone/tree/optamd3)
+      'underscore'  // AMD supported
+      ], function (Backbone, _, jQuery) {
+        return memento(Backbone, _);
+      });
+} else {
+    // No AMD, use Backbone namespace
+    root.Backbone = Backbone || {};
+    root.Backbone.Memento = memento(Backbone, _);
+}
+
+})(this);
