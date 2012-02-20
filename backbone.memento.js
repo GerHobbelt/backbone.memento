@@ -39,6 +39,10 @@ Backbone.Memento = (function(Backbone, _){
       var previousState = mementoStack.rewind();
       restoreState(previousState, restoreConfig);
     };
+
+    this.peep = function () {
+      return mementoStack.peep();
+    }
   };
 
   // ----------------------------
@@ -144,6 +148,10 @@ Backbone.Memento = (function(Backbone, _){
     this.pop = function(restoreConfig){
       var oldAttrs = attributeStack.pop();
       return oldAttrs;
+    }
+
+    this.peep = function () {
+      return attributeStack[attributeStack.length-1];
     }
 
     this.rewind = function(){
