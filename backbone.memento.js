@@ -130,7 +130,7 @@ var memento = (function(Backbone, _){
       restoreConfig = _.extend({}, config, restoreConfig);
       restoreState(previousState, restoreConfig);
     }
-      
+
   };
 
   // ----------------------------
@@ -146,7 +146,7 @@ var memento = (function(Backbone, _){
     this.push = function(attrs){
       attributeStack.push(attrs);
     }
-    
+
     this.pop = function(restoreConfig){
       var oldAttrs = attributeStack.pop();
       return oldAttrs;
@@ -168,13 +168,12 @@ var memento = (function(Backbone, _){
   return Memento;
 });
 
-
 // Backbone.Memento AMD wrapper with namespace fallback
 if (typeof define === 'function' && define.amd) {
     // AMD support
     define([
-      'backbone',    // use Backbone 0.5.3-optamd3 branch (https://github.com/jrburke/backbone/tree/optamd3)
-      'underscore'  // AMD supported
+      'backbone',   // use jrburke's https://github.com/amdjs/backbone.git
+      'underscore'  // use jrburke's https://github.com/amdjs/underscore.git
       ], function (Backbone, _, jQuery) {
         return memento(Backbone, _);
       });
